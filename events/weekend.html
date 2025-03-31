@@ -89,10 +89,52 @@
                 </tr>
             </tbody>
         </table>
+        
+        <!-- Dropdown menu for selecting a season -->
+        <h3>Choose a Season to See a Special Offer:</h3>
+        <label for="season">Season:</label>
+        <select id="season" onchange="showSeasonMessage()">
+          <option value="">--Select Season--</option>
+          <option value="spring">Spring</option>
+          <option value="summer">Summer</option>
+          <option value="fall">Fall</option>
+          <option value="winter">Winter</option>
+        </select>
+        <!-- Paragraph where the season's message will show -->
+        <p id="season-message"></p>
+    
     </main>
     <footer>
         Copyright &copy; 2024 <a href="mailto:jmmiranda@amarillocollege.com">WebMaster</a>
     </footer>
+    <script defer>
+        function showSeasonMessage() {
+          // Get the value selected from the dropdown
+          const season = document.getElementById("season").value;
+          // Paragraph element where the message will be displayed
+          const messageBox = document.getElementById("season-message");
+  
+          // Switch statement to assign a message based on the selected season
+          switch (season) {
+            case "spring":
+              messageBox.textContent = "Spring Special: Get 10% off for booking 3 nights!";
+              break;
+            case "summer":
+              messageBox.textContent = "Summer Sale: Kids stay free with 2 adults!";
+              break;
+            case "fall":
+              messageBox.textContent = "Fall Getaway: Book now and enjoy free breakfast!";
+              break;
+            case "winter":
+              messageBox.textContent = "Winter Warmth: Stay 2 nights, get the 3rd half off!";
+              break;
+              // Preset message
+            default:
+              messageBox.textContent = "";
+              break;
+          }
+        }
+      </script>
 </div>
 </body>
 </html>

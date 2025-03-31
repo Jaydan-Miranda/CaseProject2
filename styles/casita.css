@@ -193,6 +193,20 @@ form {
     min-width: 300px; 
 }
 
+/* Java Drop Down Styles */
+#season {
+    padding: 6px;
+    font-size: 1em;
+    margin-top: 10px;
+  }
+  
+  #season-message {
+    margin-top: 15px;
+    font-weight: bold;
+    color: #8e443d;
+    font-style: italic;
+  }
+
 /* Media Query for Mobile Devices */
 @media (max-width: 768px) {
     #wrapper {
