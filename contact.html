@@ -1,101 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>Darwin B&B - Contact</title>
     <meta charset="utf-8">
-	<meta name="description" content="Darwin B&B contact page">
+    <meta name="description" content="Darwin B&B contact page">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="styles/casita.css" rel="stylesheet">
+    
     <script>
-        // JavaScript validation function
+        // I had already implemented a form validation function with a alert window in the previous code with ifs but I added a try catch to handle errors more efficiently for this assignment 
         function validateContactForm(event) {
-            event.preventDefault(); // Prevent the form from submitting and reloading the page
+            event.preventDefault(); // Prevent form submission
 
-            const form = document.forms["contactForm"];
-            const name = form["name"].value;
-            const email = form["email"].value;
-            const inquiry = form["inquiry"].value;
-            const message = form["message"].value;
+            try {
+                const form = document.forms["contactForm"];
+                const name = form["name"].value.trim();
+                const email = form["email"].value.trim();
+                const inquiry = form["inquiry"].value;
+                const message = form["message"].value.trim();
 
-            if (name === "") {
-                alert("Please enter your name.");
-                return false;
-            }
-            if (email === "") {
-                alert("Please enter your email.");
-                return false;
-            }
-            if (!inquiry) {
-                alert("Please select an inquiry type.");
-                return false;
-            }
-            if (message === "") {
-                alert("Please provide your message.");
-                return false;
+                // If any required field is missing
+                if (name === "" || email === "" || !inquiry || message === "") {
+                    throw new Error("Please complete all fields before submitting the form.");
+                }
+
+                // If options are not blank//selected
+                alert("Form submitted successfully! Thank you for your inquiry.");
+                form.reset();
+            } catch (e) {
+                alert(e.message);
             }
 
-            // If validation passes, display a success message
-            alert("Form submitted successfully! Thank you for your inquiry.");
-            
-            // Clear the form
-            form.reset();
             return false;
         }
     </script>
+
 </head>
+
 <body>
-<div id="wrapper">
-    <header>
-        <h1>Darwin Bread & Breakfast</h1>
-    </header>
-    <nav>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="rooms/croom.html">Children's Room</a></li>
-            <li><a href="rooms/proom.html">Parent's Room</a></li>
-            <li><a href="events/weekend.html">Seasonal Events</a></li>
-            <li><a href="contact.html">Contact</a></li>
-        </ul>
-    </nav>
-<main>
-	<h2>Contact Us</h2>
-    <p>
-        Have questions or need assistance planning your stay at The Amazing World of Gumball House? 
-        Contact us through the form below!
-    </p>
-    <div class="contact-container">
-        <img src="images/mail.png" alt="Sending Mail png" class="contact-image">
-        <form name="contactForm" action="Demo.php" onsubmit="validateContactForm(event)">
-            <!-- Text Box -->
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name"><br><br>
+    <div id="wrapper">
+        <header>
+            <h1>Darwin Bread & Breakfast</h1>
+        </header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="rooms/croom.html">Children's Room</a></li>
+                <li><a href="rooms/proom.html">Parent's Room</a></li>
+                <li><a href="events/weekend.html">Seasonal Events</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+        <main>
+            <h2>Contact Us</h2>
+            <p>
+                Have questions or need assistance planning your stay at The Amazing World of Gumball House?
+                Contact us through the form below!
+            </p>
+            <div class="contact-container">
+                <img src="images/mail.png" alt="Sending Mail png" class="contact-image">
+                <form name="contactForm" action="Demo.php" onsubmit="validateContactForm(event)">
+                    <!-- Text Box -->
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name"><br><br>
 
-            <!-- Email Input -->
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email"><br><br>
+                    <!-- Email Input -->
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email"><br><br>
 
-            <!-- Radio Buttons -->
-            <label>Inquiry Type:</label><br>
-            <input type="radio" id="booking" name="inquiry" value="Booking">
-            <label for="booking">Booking</label><br>
-            <input type="radio" id="business" name="inquiry" value="Business">
-            <label for="business">Business</label><br>
-            <input type="radio" id="general" name="inquiry" value="General">
-            <label for="general">General Inquiry</label><br><br>
+                    <!-- Radio Buttons -->
+                    <label>Inquiry Type:</label><br>
+                    <input type="radio" id="booking" name="inquiry" value="Booking">
+                    <label for="booking">Booking</label><br>
+                    <input type="radio" id="business" name="inquiry" value="Business">
+                    <label for="business">Business</label><br>
+                    <input type="radio" id="general" name="inquiry" value="General">
+                    <label for="general">General Inquiry</label><br><br>
 
-            <!-- Scrolling Text Box -->
-            <label for="message">Message:</label><br>
-            <textarea id="message" name="message" rows="5" cols="40"></textarea><br><br>
-            
-            <!-- Submit Button -->
-            <button type="submit">Submit</button>
-        </form>
+                    <!-- Scrolling Text Box -->
+                    <label for="message">Message:</label><br>
+                    <textarea id="message" name="message" rows="5" cols="40"></textarea><br><br>
+
+                    <!-- Submit Button -->
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+        </main>
+
+        <footer>
+            Copyright &copy; 2024 <a href="mailto:jmmiranda@amarillocollege.com">WebMaster</a>
+        </footer>
     </div>
-</main>
-
-    <footer>
-        Copyright &copy; 2024 <a href="mailto:jmmiranda@amarillocollege.com">WebMaster</a>
-    </footer>
-</div>
 </body>
+
 </html>
