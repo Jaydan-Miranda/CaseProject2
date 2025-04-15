@@ -1,1 +1,1 @@
-Im adding this hoping you read before grading but i added the javascript to the weekend.html file and added a little bit of css to the casita.css
+This weeks update using exception handling inside a forum is in contact.html I had already kinda did this with ifs last semester so i just redid it but with try catch
