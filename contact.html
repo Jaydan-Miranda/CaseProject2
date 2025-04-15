@@ -7,7 +7,7 @@
     <meta name="description" content="Darwin B&B contact page">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="styles/casita.css" rel="stylesheet">
-    
+
     <script>
         // I had already implemented a form validation function with a alert window in the previous code with ifs but I added a try catch to handle errors more efficiently for this assignment 
         function validateContactForm(event) {
@@ -23,6 +23,14 @@
                 // If any required field is missing
                 if (name === "" || email === "" || !inquiry || message === "") {
                     throw new Error("Please complete all fields before submitting the form.");
+                }
+
+                // Regex to block emails from gmail.com
+                const blockedDomainRegex = /@gmail\.com$/;
+
+                // If email is from a blocked domain
+                if (blockedDomainRegex.test(email)) {
+                    throw new Error("Email addresses from gmail.com are not allowed. Please use a different email.");
                 }
 
                 // If options are not blank//selected
