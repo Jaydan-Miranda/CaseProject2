@@ -8,41 +8,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="styles/casita.css" rel="stylesheet">
 
+    <script src="script.js"></script>
     <script>
-        // I had already implemented a form validation function with a alert window in the previous code with ifs but I added a try catch to handle errors more efficiently for this assignment 
         function validateContactForm(event) {
-            event.preventDefault(); // Prevent form submission
-
+            event.preventDefault();
+    
             try {
                 const form = document.forms["contactForm"];
-                const name = form["name"].value.trim();
-                const email = form["email"].value.trim();
-                const inquiry = form["inquiry"].value;
-                const message = form["message"].value.trim();
-
-                // If any required field is missing
-                if (name === "" || email === "" || !inquiry || message === "") {
-                    throw new Error("Please complete all fields before submitting the form.");
-                }
-
-                // Regex to block emails from gmail.com
-                const blockedDomainRegex = /@gmail\.com$/;
-
-                // If email is from a blocked domain
-                if (blockedDomainRegex.test(email)) {
-                    throw new Error("Email addresses from gmail.com are not allowed. Please use a different email.");
-                }
-
-                // If options are not blank//selected
+                const validator = new FormValidator(form);
+                validator.validate();
+    
                 alert("Form submitted successfully! Thank you for your inquiry.");
                 form.reset();
             } catch (e) {
                 alert(e.message);
             }
-
+    
             return false;
         }
     </script>
+    
 
 </head>
 
