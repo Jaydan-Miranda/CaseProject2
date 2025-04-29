@@ -33,3 +33,50 @@ FormValidator.prototype.validate = function () {
     this.validateRequiredFields();  // Step 1: Check for empty fields
     this.validateEmailDomain();     // Step 2: Check for blocked email domains
 };
+
+// Initialize and add the map
+function initMap() {
+    // Try to get user's location
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition, showError);
+    } else {
+        alert("Geolocation is not supported by this browser.");
+    }
+}
+
+// Show map at user's position
+function showPosition(position) {
+    const userLatLng = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude
+    };
+
+    const map = new google.maps.Map(document.getElementById("map"), {
+        center: userLatLng,
+        zoom: 15
+    });
+
+    new google.maps.Marker({
+        position: userLatLng,
+        map: map,
+        title: "You are here!"
+    });
+}
+
+// Handle geolocation errors
+function showError(error) {
+    switch (error.code) {
+        case error.PERMISSION_DENIED:
+            alert("User denied the request for Geolocation.");
+            break;
+        case error.POSITION_UNAVAILABLE:
+            alert("Location information is unavailable.");
+            break;
+        case error.TIMEOUT:
+            alert("The request to get user location timed out.");
+            break;
+        case error.UNKNOWN_ERROR:
+            alert("An unknown error occurred.");
+            break;
+    }
+}
